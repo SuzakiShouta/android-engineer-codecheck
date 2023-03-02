@@ -4,13 +4,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.model.Repository
 
 class CustomAdapter(private val itemClickListener: OnItemClickListener)
-    : ListAdapter<Repository, CustomAdapter.ViewHolder>(diff_util){
+    : ListAdapter<Repository, CustomAdapter.ViewHolder>(DiffCallback()){
+
+    private class DiffCallback : DiffUtil.ItemCallback<Repository>(){
+        override fun areItemsTheSame(oldItem: Repository, newItem: Repository): Boolean {
+            return oldItem.name == newItem.name
+        }
+
+        override fun areContentsTheSame(oldItem: Repository, newItem: Repository): Boolean {
+            return oldItem == newItem
+        }
+    }
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view)
 
