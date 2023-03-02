@@ -15,29 +15,25 @@ import jp.co.yumemi.android.code_check.model.Repository
 
 class SearchResultFragment: Fragment(R.layout.fragment_search_result){
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val _binding= FragmentSearchResultBinding.bind(view)
-
-        val _viewModel= SearchResultViewModel(context!!)
-
-        val _layoutManager= LinearLayoutManager(context!!)
-        val _dividerItemDecoration=
-            DividerItemDecoration(context!!, _layoutManager.orientation)
-        val _adapter= CustomAdapter(object : CustomAdapter.OnItemClickListener{
+        val binding= FragmentSearchResultBinding.bind(view)
+        val viewModel= SearchResultViewModel(context!!)
+        val layoutManager= LinearLayoutManager(context!!)
+        val dividerItemDecoration= DividerItemDecoration(context!!, layoutManager.orientation)
+        val adapter= CustomAdapter(object : CustomAdapter.OnItemClickListener{
             override fun itemClick(item: Repository){
                 gotoRepositoryFragment(item)
             }
         })
 
-        _binding.searchInputText
+        binding.searchInputText
             .setOnEditorActionListener{ editText, action, _ ->
                 if (action== EditorInfo.IME_ACTION_SEARCH){
                     editText.text.toString().let {
-                        _viewModel.searchResults(it).apply{
-                            _adapter.submitList(this)
+                        viewModel.searchResults(it).apply{
+                            adapter.submitList(this)
                         }
                     }
                     return@setOnEditorActionListener true
@@ -45,15 +41,14 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
                 return@setOnEditorActionListener false
             }
 
-        _binding.recyclerView.also{
-            it.layoutManager= _layoutManager
-            it.addItemDecoration(_dividerItemDecoration)
-            it.adapter= _adapter
+        binding.recyclerView.also{
+            it.layoutManager= layoutManager
+            it.addItemDecoration(dividerItemDecoration)
+            it.adapter= adapter
         }
     }
 
-    fun gotoRepositoryFragment(repository: Repository)
-    {
+    fun gotoRepositoryFragment(repository: Repository) {
         val _action= SearchResultFragmentDirections
             .actionRepositoriesFragmentToRepositoryFragment(repository = repository)
         findNavController().navigate(_action)
@@ -61,14 +56,12 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
 }
 
 val diff_util= object: DiffUtil.ItemCallback<Repository>(){
-    override fun areItemsTheSame(oldItem: Repository, newItem: Repository): Boolean
-    {
-        return oldItem.name== newItem.name
+    override fun areItemsTheSame(oldItem: Repository, newItem: Repository): Boolean {
+        return oldItem.name == newItem.name
     }
 
-    override fun areContentsTheSame(oldItem: Repository, newItem: Repository): Boolean
-    {
-        return oldItem== newItem
+    override fun areContentsTheSame(oldItem: Repository, newItem: Repository): Boolean {
+        return oldItem == newItem
     }
 
 }
