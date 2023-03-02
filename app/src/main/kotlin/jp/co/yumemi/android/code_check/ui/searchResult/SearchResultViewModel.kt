@@ -4,7 +4,6 @@
 package jp.co.yumemi.android.code_check.ui.searchResult
 
 import android.content.Context
-import android.os.Parcelable
 import androidx.lifecycle.ViewModel
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -17,16 +16,10 @@ import jp.co.yumemi.android.code_check.model.Repository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
-import kotlinx.parcelize.Parcelize
 import org.json.JSONObject
 import java.util.*
 
-/**
- * TwoFragment で使う
- */
-class SearchResultViewModel(
-    val context: Context
-) : ViewModel() {
+class SearchResultViewModel(val context: Context) : ViewModel() {
 
     // 検索結果
     fun searchResults(inputText: String): List<Repository> = runBlocking {
@@ -39,14 +32,9 @@ class SearchResultViewModel(
             }
 
             val jsonBody = JSONObject(response.receive<String>())
-
             val jsonItems = jsonBody.optJSONArray("items")!!
+            val repositories = mutableListOf<Repository>()
 
-            val items = mutableListOf<Repository>()
-
-            /**
-             * アイテムの個数分ループする
-             */
             for (i in 0 until jsonItems.length()) {
                 val jsonItem = jsonItems.optJSONObject(i)!!
                 val name = jsonItem.optString("full_name")
@@ -54,10 +42,10 @@ class SearchResultViewModel(
                 val language = jsonItem.optString("language")
                 val stargazersCount = jsonItem.optLong("stargazers_count")
                 val watchersCount = jsonItem.optLong("watchers_count")
-                val forksCount = jsonItem.optLong("forks_conut")
+                val forksCount = jsonItem.optLong("forks_count")
                 val openIssuesCount = jsonItem.optLong("open_issues_count")
 
-                items.add(
+                repositories.add(
                     Repository(
                         name = name,
                         ownerIconUrl = ownerIconUrl,
@@ -72,7 +60,7 @@ class SearchResultViewModel(
 
             lastSearchDate = Date()
 
-            return@async items.toList()
+            return@async repositories.toList()
         }.await()
     }
 }
