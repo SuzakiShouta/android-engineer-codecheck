@@ -12,8 +12,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
-import jp.co.yumemi.android.code_check.OneViewModel
 import jp.co.yumemi.android.code_check.R
+import jp.co.yumemi.android.code_check.SearchResultViewModel
 import jp.co.yumemi.android.code_check.databinding.FragmentSearchResultBinding
 import jp.co.yumemi.android.code_check.item
 
@@ -25,7 +25,7 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
 
         val _binding= FragmentSearchResultBinding.bind(view)
 
-        val _viewModel= OneViewModel(context!!)
+        val _viewModel= SearchResultViewModel(context!!)
 
         val _layoutManager= LinearLayoutManager(context!!)
         val _dividerItemDecoration=

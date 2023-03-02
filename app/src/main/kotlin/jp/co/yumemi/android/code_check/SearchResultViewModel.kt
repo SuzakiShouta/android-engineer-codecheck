@@ -22,7 +22,7 @@ import java.util.*
 /**
  * TwoFragment で使う
  */
-class OneViewModel(
+class SearchResultViewModel(
     val context: Context
 ) : ViewModel() {
 
