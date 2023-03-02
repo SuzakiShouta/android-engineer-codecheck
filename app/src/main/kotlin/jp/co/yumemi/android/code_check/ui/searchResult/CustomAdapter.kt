@@ -9,9 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.model.Repository
 
-class CustomAdapter(
-    private val itemClickListener: OnItemClickListener,
-) : ListAdapter<Repository, CustomAdapter.ViewHolder>(diff_util){
+class CustomAdapter(private val itemClickListener: OnItemClickListener)
+    : ListAdapter<Repository, CustomAdapter.ViewHolder>(diff_util){
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view)
 
@@ -19,21 +18,18 @@ class CustomAdapter(
         fun itemClick(item: Repository)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
-    {
-        val _view= LayoutInflater.from(parent.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view= LayoutInflater.from(parent.context)
             .inflate(R.layout.layout_item, parent, false)
-        return ViewHolder(_view)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int)
-    {
-        val _repository= getItem(position)
-        (holder.itemView.findViewById<View>(R.id.repositoryNameView) as TextView).text=
-            _repository.name
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val repository= getItem(position)
+        (holder.itemView.findViewById<View>(R.id.repositoryNameView) as TextView).text = repository.name
 
         holder.itemView.setOnClickListener{
-            itemClickListener.itemClick(_repository)
+            itemClickListener.itemClick(repository)
         }
     }
 }
