@@ -4,11 +4,8 @@
 package jp.co.yumemi.android.code_check.ui.searchResult
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
@@ -74,33 +71,4 @@ val diff_util= object: DiffUtil.ItemCallback<Repository>(){
         return oldItem== newItem
     }
 
-}
-
-class CustomAdapter(
-    private val itemClickListener: OnItemClickListener,
-) : ListAdapter<Repository, CustomAdapter.ViewHolder>(diff_util){
-
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view)
-
-    interface OnItemClickListener{
-    	fun itemClick(item: Repository)
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
-    {
-    	val _view= LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_item, parent, false)
-    	return ViewHolder(_view)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int)
-    {
-    	val _repository= getItem(position)
-        (holder.itemView.findViewById<View>(R.id.repositoryNameView) as TextView).text=
-            _repository.name
-
-    	holder.itemView.setOnClickListener{
-     		itemClickListener.itemClick(_repository)
-    	}
-    }
 }
