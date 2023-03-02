@@ -19,11 +19,11 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding= FragmentSearchResultBinding.bind(view)
-        val viewModel= SearchResultViewModel(context!!)
-        val layoutManager= LinearLayoutManager(context!!)
-        val dividerItemDecoration= DividerItemDecoration(context!!, layoutManager.orientation)
-        val adapter= CustomAdapter(object : CustomAdapter.OnItemClickListener{
+        val binding = FragmentSearchResultBinding.bind(view)
+        val viewModel = SearchResultViewModel(context!!)
+        val layoutManager = LinearLayoutManager(context!!)
+        val dividerItemDecoration = DividerItemDecoration(context!!, layoutManager.orientation)
+        val customAdapter = CustomAdapter(object : CustomAdapter.OnItemClickListener{
             override fun itemClick(item: Repository){
                 gotoRepositoryFragment(item)
             }
@@ -35,7 +35,7 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
             if (action == EditorInfo.IME_ACTION_SEARCH) {
                 // クエリを投げて結果をCustomAdapterに投げる。
                 val query = editText.text.toString()
-                viewModel.searchResults(query).let(adapter::submitList)
+                viewModel.searchResults(query).let(customAdapter::submitList)
                 true
             } else {
                 false
@@ -47,7 +47,7 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
             it.layoutManager= layoutManager
             // 要素間に区切り線を追加
             it.addItemDecoration(dividerItemDecoration)
-            it.adapter= adapter
+            it.adapter= customAdapter
         }
     }
 
