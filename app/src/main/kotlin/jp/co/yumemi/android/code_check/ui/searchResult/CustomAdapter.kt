@@ -13,6 +13,7 @@ import jp.co.yumemi.android.code_check.model.Repository
 class CustomAdapter(private val itemClickListener: OnItemClickListener)
     : ListAdapter<Repository, CustomAdapter.ViewHolder>(DiffCallback()){
 
+    // 昔のデータと比較して違った場合のみRecyclerViewのItemを更新
     private class DiffCallback : DiffUtil.ItemCallback<Repository>(){
         override fun areItemsTheSame(oldItem: Repository, newItem: Repository): Boolean {
             return oldItem.name == newItem.name
@@ -25,6 +26,7 @@ class CustomAdapter(private val itemClickListener: OnItemClickListener)
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view)
 
+    // タップされたらRepositoryを返す。これを継承してリスナを渡されればitemClickが呼ばれる
     interface OnItemClickListener{
         fun itemClick(item: Repository)
     }
@@ -36,10 +38,11 @@ class CustomAdapter(private val itemClickListener: OnItemClickListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val repository= getItem(position)
+        val repository: Repository = getItem(position)
         val repositoryNameView = holder.itemView.findViewById<View>(R.id.repositoryNameView) as TextView
         repositoryNameView.text = repository.name
 
+        // itemViewそのものを押した時
         holder.itemView.setOnClickListener{
             itemClickListener.itemClick(repository)
         }
