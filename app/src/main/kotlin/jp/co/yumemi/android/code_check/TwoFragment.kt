@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import coil.load
 import jp.co.yumemi.android.code_check.TopActivity.Companion.lastSearchDate
 import jp.co.yumemi.android.code_check.databinding.FragmentTwoBinding
+import jp.co.yumemi.android.code_check.model.Repository
 
 class TwoFragment : Fragment(R.layout.fragment_two) {
 
@@ -26,14 +27,14 @@ class TwoFragment : Fragment(R.layout.fragment_two) {
 
         binding = FragmentTwoBinding.bind(view)
 
-        var item = args.item
+        var repository: Repository = args.repository
 
-        _binding.ownerIconView.load(item.ownerIconUrl);
-        _binding.nameView.text = item.name;
-        _binding.languageView.text = item.language;
-        _binding.starsView.text = "${item.stargazersCount} stars";
-        _binding.watchersView.text = "${item.watchersCount} watchers";
-        _binding.forksView.text = "${item.forksCount} forks";
-        _binding.openIssuesView.text = "${item.openIssuesCount} open issues";
+        _binding.ownerIconView.load(repository.ownerIconUrl);
+        _binding.nameView.text = repository.name;
+        _binding.languageView.text = repository.language;
+        _binding.starsView.text = "${repository.stargazersCount} stars";
+        _binding.watchersView.text = "${repository.watchersCount} watchers";
+        _binding.forksView.text = "${repository.forksCount} forks";
+        _binding.openIssuesView.text = "${repository.openIssuesCount} open issues";
     }
 }
