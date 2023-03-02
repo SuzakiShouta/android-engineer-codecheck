@@ -24,15 +24,17 @@ class CustomAdapter(private val itemClickListener: OnItemClickListener)
         }
     }
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view)
-
-    // タップされたらRepositoryを返す。これを継承してリスナを渡されればitemClickが呼ばれる
+    // タップされたらRepositoryを返す。これを継承すればitemClickが呼ばれる。
+    // リスナはAdapterのインスタンス化する時にもらっている。
     interface OnItemClickListener{
         fun itemClick(item: Repository)
     }
 
+    class ViewHolder(view: View): RecyclerView.ViewHolder(view)
+
+    // parentにlayout_itemをinflateしてViewHolderを生成
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view= LayoutInflater.from(parent.context)
+        val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.layout_item, parent, false)
         return ViewHolder(view)
     }
@@ -42,7 +44,7 @@ class CustomAdapter(private val itemClickListener: OnItemClickListener)
         val repositoryNameView = holder.itemView.findViewById<View>(R.id.repositoryNameView) as TextView
         repositoryNameView.text = repository.name
 
-        // itemViewそのものを押した時
+        // itemViewそのものを押した時リスナを通してイベントを送る
         holder.itemView.setOnClickListener{
             itemClickListener.itemClick(repository)
         }
