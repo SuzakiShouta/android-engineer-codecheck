@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
 import jp.co.yumemi.android.code_check.R
@@ -28,29 +29,31 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
             }
         })
 
-        binding.searchInputText
-            .setOnEditorActionListener{ editText, action, _ ->
-                if (action== EditorInfo.IME_ACTION_SEARCH){
-                    editText.text.toString().let {
-                        viewModel.searchResults(it).apply{
-                            adapter.submitList(this)
-                        }
-                    }
-                    return@setOnEditorActionListener true
-                }
-                return@setOnEditorActionListener false
+        // エンターキーなどのアクションに反応して検索をする
+        binding.searchInputText.setOnEditorActionListener { editText, action, _ ->
+            // IMEの検索ボタンに反応
+            if (action == EditorInfo.IME_ACTION_SEARCH) {
+                // クエリを投げて結果をCustomAdapterに投げる。
+                val query = editText.text.toString()
+                viewModel.searchResults(query).let(adapter::submitList)
+                true
+            } else {
+                false
             }
+        }
 
+        // RecyclerViewの設定
         binding.recyclerView.also{
             it.layoutManager= layoutManager
+            // 要素間に区切り線を追加
             it.addItemDecoration(dividerItemDecoration)
             it.adapter= adapter
         }
     }
 
     fun gotoRepositoryFragment(repository: Repository) {
-        val _action= SearchResultFragmentDirections
+        val action: NavDirections = SearchResultFragmentDirections
             .actionRepositoriesFragmentToRepositoryFragment(repository = repository)
-        findNavController().navigate(_action)
+        findNavController().navigate(action)
     }
 }
