@@ -43,7 +43,10 @@ class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
 
         val repository: Repository = args.repository
 
-        binding.ownerIconView.load(repository.ownerIconUrl)
+        binding.ownerIconView.load(repository.ownerIconUrl) {
+            R.drawable.jetbrains
+        }
+
         binding.nameView.text = repository.name
         binding.languageView.text = repository.language
         binding.starsView.text = context.getString(R.string.stargazers_count, repository.stargazersCount)

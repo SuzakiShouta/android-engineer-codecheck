@@ -47,7 +47,7 @@ class SearchResultViewModel(val app: MainApplication) : ViewModel() {
                 val jsonItem = jsonItems.optJSONObject(i)
                 Log.d("SearchResultViewModel","$jsonItem")
                 val name = jsonItem.optString("full_name")
-                val ownerIconUrl = jsonItem.optString("owner.avatar_url")
+                val ownerIconUrl = jsonItem.optJSONObject("owner")?.optString("avatar_url") ?: ""
                 val language = jsonItem.optString("language")
                 val stargazersCount = jsonItem.optLong("stargazers_count")
                 val watchersCount = jsonItem.optLong("watchers_count")
