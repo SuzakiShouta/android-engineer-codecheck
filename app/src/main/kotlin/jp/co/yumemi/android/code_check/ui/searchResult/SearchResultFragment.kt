@@ -20,9 +20,9 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
         super.onViewCreated(view, savedInstanceState)
 
         val binding = FragmentSearchResultBinding.bind(view)
-        val viewModel = SearchResultViewModel(context!!)
-        val layoutManager = LinearLayoutManager(context!!)
-        val dividerItemDecoration = DividerItemDecoration(context!!, layoutManager.orientation)
+        val viewModel = SearchResultViewModel(requireContext())
+        val layoutManager = LinearLayoutManager(requireContext())
+        val dividerItemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
         val customAdapter = CustomAdapter(object : CustomAdapter.OnItemClickListener{
             override fun itemClick(item: Repository){
                 gotoRepositoryFragment(item)
