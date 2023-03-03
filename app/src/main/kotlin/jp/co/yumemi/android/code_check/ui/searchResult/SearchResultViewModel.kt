@@ -4,6 +4,7 @@
 package jp.co.yumemi.android.code_check.ui.searchResult
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -44,6 +45,7 @@ class SearchResultViewModel(val app: MainApplication) : ViewModel() {
 
             for (i in 0 until jsonItems.length()) {
                 val jsonItem = jsonItems.optJSONObject(i)
+                Log.d("SearchResultViewModel","$jsonItem")
                 val name = jsonItem.optString("full_name")
                 val ownerIconUrl = jsonItem.optString("owner.avatar_url")
                 val language = jsonItem.optString("language")

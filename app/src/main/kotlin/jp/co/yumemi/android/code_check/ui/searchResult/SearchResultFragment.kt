@@ -4,6 +4,7 @@
 package jp.co.yumemi.android.code_check.ui.searchResult
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,6 +60,7 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
 
         // repositoriesが更新されたらアダプタに渡す
         viewModel.repositories.observe(viewLifecycleOwner) {
+            Log.d("SearchResultFragment","observer $it")
             customAdapter.submitList(it)
         }
 

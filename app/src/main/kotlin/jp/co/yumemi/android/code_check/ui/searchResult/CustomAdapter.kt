@@ -1,5 +1,6 @@
 package jp.co.yumemi.android.code_check.ui.searchResult
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,10 +17,12 @@ class CustomAdapter(private val itemClickListener: OnItemClickListener)
     // 昔のデータと比較して違った場合のみRecyclerViewのItemを更新
     private class DiffCallback : DiffUtil.ItemCallback<Repository>(){
         override fun areItemsTheSame(oldItem: Repository, newItem: Repository): Boolean {
+            Log.d("CustomAdapter", "areItemsTheSame ${oldItem.name == newItem.name}")
             return oldItem.name == newItem.name
         }
 
         override fun areContentsTheSame(oldItem: Repository, newItem: Repository): Boolean {
+            Log.d("CustomAdapter", "areContentsTheSame ${oldItem.name == newItem.name}")
             return oldItem == newItem
         }
     }
@@ -43,6 +46,7 @@ class CustomAdapter(private val itemClickListener: OnItemClickListener)
         val repository: Repository = getItem(position)
         val repositoryNameView = holder.itemView.findViewById<View>(R.id.repositoryNameView) as TextView
         repositoryNameView.text = repository.name
+        Log.d("CustomAdapter", "repository.name ${repository.name}")
 
         // itemViewそのものを押した時リスナを通してイベントを送る
         holder.itemView.setOnClickListener{
