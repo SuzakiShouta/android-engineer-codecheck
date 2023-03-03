@@ -3,6 +3,7 @@
  */
 package jp.co.yumemi.android.code_check.ui.repositoryDetail
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,12 +24,16 @@ class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
 
     private var _binding: FragmentRepositoryDetailBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var context: Context
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentRepositoryDetailBinding.inflate(inflater, container, false)
+        context = requireContext()
         return binding.root
     }
 
@@ -44,9 +49,9 @@ class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
         binding.ownerIconView.load(repository.ownerIconUrl)
         binding.nameView.text = repository.name
         binding.languageView.text = repository.language
-        binding.starsView.text = context?.getString(R.string.stargazers_count, repository.stargazersCount)
-        binding.watchersView.text = context?.getString(R.string.watchers_count, repository.watchersCount)
-        binding.forksView.text = context?.getString(R.string.forks_count, repository.forksCount)
-        binding.openIssuesView.text = context?.getString(R.string.open_issues_count, repository.openIssuesCount)
+        binding.starsView.text = context.getString(R.string.stargazers_count, repository.stargazersCount)
+        binding.watchersView.text = context.getString(R.string.watchers_count, repository.watchersCount)
+        binding.forksView.text = context.getString(R.string.forks_count, repository.forksCount)
+        binding.openIssuesView.text = context.getString(R.string.open_issues_count, repository.openIssuesCount)
     }
 }
