@@ -41,8 +41,6 @@ class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
 
         Log.d("検索した日時", lastSearchDate.toString())
 
-        _binding = FragmentRepositoryDetailBinding.bind(view)
-
         val repository: Repository = args.repository
 
         binding.ownerIconView.load(repository.ownerIconUrl)
