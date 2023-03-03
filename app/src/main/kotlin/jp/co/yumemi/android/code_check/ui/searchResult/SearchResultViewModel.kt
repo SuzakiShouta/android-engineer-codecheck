@@ -27,11 +27,11 @@ import java.util.*
 
 class SearchResultViewModel(val context: Context) : ViewModel() {
 
-    // ResponseがあったらList<Repository>にしてこのLiveDataにPOST
+    // APIを叩いた結果はList<Repository>に変換されここに入る
     private val _repositories = MutableLiveData<List<Repository>>(listOf())
     val repositories: LiveData<List<Repository>> = _repositories
 
-    // 検索結果
+    // githubAPIを叩き、検索結果をLiveDataに投げる
     fun searchResults(inputText: String) {
         viewModelScope.launch {
             val client = HttpClient(Android)

@@ -21,6 +21,7 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
 
     private var _binding: FragmentSearchResultBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,7 +48,7 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
         binding.searchInputText.setOnEditorActionListener { editText, action, _ ->
             // IMEの検索ボタンに反応
             if (action == EditorInfo.IME_ACTION_SEARCH) {
-                // クエリを投げて結果をCustomAdapterに投げる。
+                // searchResultsの結果はviewModelのrepositoriesというLiveDataが持つ
                 val query = editText.text.toString()
                 viewModel.searchResults(query)
                 true
@@ -56,6 +57,7 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
             }
         }
 
+        // repositoriesが更新されたらアダプタに渡す
         viewModel.repositories.observe(viewLifecycleOwner) {
             customAdapter.submitList(it)
         }
