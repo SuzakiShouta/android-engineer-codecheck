@@ -4,6 +4,7 @@
 package jp.co.yumemi.android.code_check.ui.searchResult
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,11 +49,15 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
             if (action == EditorInfo.IME_ACTION_SEARCH) {
                 // クエリを投げて結果をCustomAdapterに投げる。
                 val query = editText.text.toString()
-                viewModel.searchResults(query).let(customAdapter::submitList)
+                viewModel.searchResults(query)
                 true
             } else {
                 false
             }
+        }
+
+        viewModel.repositories.observe(viewLifecycleOwner) {
+            customAdapter.submitList(it)
         }
 
         // RecyclerViewの設定
