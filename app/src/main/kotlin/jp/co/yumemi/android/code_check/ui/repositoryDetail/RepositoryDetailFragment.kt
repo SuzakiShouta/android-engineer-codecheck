@@ -15,7 +15,6 @@ import coil.load
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.TopActivity.Companion.lastSearchDate
 import jp.co.yumemi.android.code_check.databinding.FragmentRepositoryDetailBinding
-import jp.co.yumemi.android.code_check.databinding.FragmentSearchResultBinding
 import jp.co.yumemi.android.code_check.model.Repository
 
 class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
