@@ -4,7 +4,9 @@
 package jp.co.yumemi.android.code_check.ui.searchResult
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
@@ -16,10 +18,21 @@ import jp.co.yumemi.android.code_check.model.Repository
 
 class SearchResultFragment: Fragment(R.layout.fragment_search_result){
 
+    private var _binding: FragmentSearchResultBinding? = null
+    private val binding get() = _binding!!
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentSearchResultBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = FragmentSearchResultBinding.bind(view)
         val viewModel = SearchResultViewModel(requireContext())
         val layoutManager = LinearLayoutManager(requireContext())
         val dividerItemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
