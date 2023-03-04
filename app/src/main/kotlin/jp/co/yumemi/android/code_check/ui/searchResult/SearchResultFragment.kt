@@ -62,7 +62,6 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
 
         // repositoriesが更新されたらアダプタに渡す
         viewModel.repositories.observe(viewLifecycleOwner) {
-            Log.d("SearchResultFragment","observer $it")
             customAdapter.submitList(it)
         }
 
