@@ -4,6 +4,7 @@
 package jp.co.yumemi.android.code_check.ui.searchResult
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
+import jp.co.yumemi.android.code_check.MainApplication
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.databinding.FragmentSearchResultBinding
 import jp.co.yumemi.android.code_check.model.Repository
@@ -34,7 +36,7 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = SearchResultViewModel(requireContext())
+        val viewModel = SearchResultViewModel(requireActivity().application as MainApplication)
         val layoutManager = LinearLayoutManager(requireContext())
         val dividerItemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
         val customAdapter = CustomAdapter(object : CustomAdapter.OnItemClickListener{
@@ -48,8 +50,10 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
             // IMEの検索ボタンに反応
             if (action == EditorInfo.IME_ACTION_SEARCH) {
                 // searchResultsの結果はviewModelのrepositoriesというLiveDataが持つ
-                val query = editText.text.toString()
-                viewModel.searchResults(query)
+                if (editText.text.isNotEmpty()) {
+                    val query = editText.text.toString()
+                    viewModel.searchResults(query)
+                }
                 true
             } else {
                 false

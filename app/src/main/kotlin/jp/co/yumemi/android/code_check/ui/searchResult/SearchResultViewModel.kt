@@ -4,6 +4,7 @@
 package jp.co.yumemi.android.code_check.ui.searchResult
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +14,7 @@ import io.ktor.client.call.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import jp.co.yumemi.android.code_check.MainApplication
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.TopActivity.Companion.lastSearchDate
 import jp.co.yumemi.android.code_check.model.Repository
@@ -21,7 +23,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
 
-class SearchResultViewModel(val context: Context) : ViewModel() {
+class SearchResultViewModel(val app: MainApplication) : ViewModel() {
 
     // APIを叩いた結果はList<Repository>に変換されここに入る
     private val _repositories = MutableLiveData<List<Repository>>(listOf())
@@ -44,7 +46,7 @@ class SearchResultViewModel(val context: Context) : ViewModel() {
             for (i in 0 until jsonItems.length()) {
                 val jsonItem = jsonItems.optJSONObject(i)
                 val name = jsonItem.optString("full_name")
-                val ownerIconUrl = jsonItem.optString("owner.avatar_url")
+                val ownerIconUrl = jsonItem.optJSONObject("owner")?.optString("avatar_url") ?: ""
                 val language = jsonItem.optString("language")
                 val stargazersCount = jsonItem.optLong("stargazers_count")
                 val watchersCount = jsonItem.optLong("watchers_count")
@@ -55,7 +57,7 @@ class SearchResultViewModel(val context: Context) : ViewModel() {
                     Repository(
                         name = name,
                         ownerIconUrl = ownerIconUrl,
-                        language = context.getString(R.string.written_language, language),
+                        language = app.applicationContext.getString(R.string.written_language, language),
                         stargazersCount = stargazersCount,
                         watchersCount = watchersCount,
                         forksCount = forksCount,
