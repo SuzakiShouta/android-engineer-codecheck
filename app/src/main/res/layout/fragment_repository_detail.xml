@@ -25,7 +25,7 @@
         android:layout_marginTop="16dp"
         android:text="JetBrains/kotlin"
         android:textColor="@color/textColor"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ownerIconView" />
@@ -45,7 +45,7 @@
         android:layout_marginTop="8dp"
         android:text="Written in Kotlin"
         android:textColor="@color/textColor"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/nameView"
         tools:ignore="MissingConstraints" />
 
@@ -58,7 +58,7 @@
         android:text="38530 stars"
         android:textAlignment="textEnd"
         android:textColor="@color/textColor"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/centerGuid"
         app:layout_constraintTop_toBottomOf="@id/nameView" />
@@ -72,7 +72,7 @@
         android:text="38530 watchers"
         android:textAlignment="textEnd"
         android:textColor="@color/textColor"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/centerGuid"
         app:layout_constraintTop_toBottomOf="@id/starsView" />
@@ -86,7 +86,7 @@
         android:text="4675 forks"
         android:textAlignment="textEnd"
         android:textColor="@color/textColor"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/centerGuid"
         app:layout_constraintTop_toBottomOf="@id/watchersView" />
@@ -100,7 +100,7 @@
         android:text="131 open issues"
         android:textAlignment="textEnd"
         android:textColor="@color/textColor"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/centerGuid"
         app:layout_constraintTop_toBottomOf="@id/forksView" />
