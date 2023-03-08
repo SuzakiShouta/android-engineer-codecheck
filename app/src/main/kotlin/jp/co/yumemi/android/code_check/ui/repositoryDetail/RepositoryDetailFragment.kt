@@ -45,7 +45,7 @@ class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
         }
 
         binding.nameView.text = repository.name
-        binding.languageView.text = repository.language
+        binding.languageView.text = context.getString(R.string.written_language, repository.language)
         binding.starsView.text = context.getString(R.string.stargazers_count, repository.stargazersCount)
         binding.watchersView.text = context.getString(R.string.watchers_count, repository.watchersCount)
         binding.forksView.text = context.getString(R.string.forks_count, repository.forksCount)
