@@ -24,4 +24,16 @@ class SearchResultViewModel(val app: MainApplication) : ViewModel() {
             GithubApi.searchRepositories(query, _repositories)
         }
     }
+
+    fun validationCheck (query: String): Boolean {
+        // null もしくは 空白のみ
+        if (query.isBlank()) {
+            return false
+        }
+        // 256文字以上の時
+        if (query.length > 255) {
+            return false
+        }
+        return true
+    }
 }
