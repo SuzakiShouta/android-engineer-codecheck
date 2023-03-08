@@ -1,6 +1,5 @@
 package jp.co.yumemi.android.code_check.api
 
-import androidx.lifecycle.MutableLiveData
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.android.*
