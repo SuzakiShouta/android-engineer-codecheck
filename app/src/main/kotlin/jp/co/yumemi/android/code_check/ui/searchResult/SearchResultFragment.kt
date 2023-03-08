@@ -4,7 +4,6 @@
 package jp.co.yumemi.android.code_check.ui.searchResult
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,7 +51,7 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
                 // searchResultsの結果はviewModelのrepositoriesというLiveDataが持つ
                 if (editText.text.isNotEmpty()) {
                     val query = editText.text.toString()
-                    viewModel.searchResults(query)
+                    viewModel.searchRepositories(query)
                 }
                 true
             } else {
