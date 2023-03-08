@@ -16,7 +16,6 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import jp.co.yumemi.android.code_check.MainApplication
 import jp.co.yumemi.android.code_check.R
-import jp.co.yumemi.android.code_check.TopActivity.Companion.lastSearchDate
 import jp.co.yumemi.android.code_check.model.Repository
 import kotlinx.coroutines.launch
 import org.json.JSONArray
@@ -65,7 +64,6 @@ class SearchResultViewModel(val app: MainApplication) : ViewModel() {
                     )
                 )
             }
-            lastSearchDate = Date()
             _repositories.postValue(repositories)
         }
     }
