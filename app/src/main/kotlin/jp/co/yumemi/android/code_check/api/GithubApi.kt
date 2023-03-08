@@ -1,6 +1,5 @@
 package jp.co.yumemi.android.code_check.api
 
-import androidx.lifecycle.MutableLiveData
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.android.*
@@ -12,10 +11,8 @@ import org.json.JSONObject
 
 class GithubApi {
     companion object {
-        suspend fun searchRepositories(
-            query: String,
-            result: MutableLiveData<List<Repository>>,
-        ) {
+        suspend fun searchRepositories(query: String, ): List<Repository> {
+
             val client = HttpClient(Android)
 
             val response: HttpResponse = client.get("https://api.github.com/search/repositories") {
@@ -49,7 +46,8 @@ class GithubApi {
                     )
                 )
             }
-            result.postValue(repositories)
+
+            return repositories.toList()
         }
     }
 }
