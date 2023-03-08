@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import jp.co.yumemi.android.code_check.MainApplication
+import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.api.GithubApi
 import jp.co.yumemi.android.code_check.model.Repository
 import kotlinx.coroutines.launch
@@ -31,7 +32,7 @@ class SearchResultViewModel(val app: MainApplication) : ViewModel() {
         if (query.isBlank()) {
             Toast.makeText(
                 app.applicationContext,
-                "検索欄に文字を入力してください",
+                app.applicationContext.getString(R.string.error_no_query),
                 Toast.LENGTH_SHORT
             ).show()
             return false
@@ -40,7 +41,7 @@ class SearchResultViewModel(val app: MainApplication) : ViewModel() {
         if (query.length > 255) {
             Toast.makeText(
                 app.applicationContext,
-                "文字が長すぎます",
+                app.applicationContext.getString(R.string.error_too_long_query),
                 Toast.LENGTH_SHORT
             ).show()
             return false
