@@ -3,6 +3,7 @@
  */
 package jp.co.yumemi.android.code_check.ui.searchResult
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,10 +29,20 @@ class SearchResultViewModel(val app: MainApplication) : ViewModel() {
     fun validationCheck (query: CharSequence): Boolean {
         // null もしくは 空白のみ
         if (query.isBlank()) {
+            Toast.makeText(
+                app.applicationContext,
+                "検索欄に文字を入力してください",
+                Toast.LENGTH_SHORT
+            ).show()
             return false
         }
         // 256文字以上の時
         if (query.length > 255) {
+            Toast.makeText(
+                app.applicationContext,
+                "文字が長すぎます",
+                Toast.LENGTH_SHORT
+            ).show()
             return false
         }
         return true
