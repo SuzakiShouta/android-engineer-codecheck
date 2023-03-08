@@ -24,8 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="JetBrains/kotlin"
-        android:textColor="@color/textColor"
-        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ownerIconView" />
@@ -44,8 +44,8 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
         android:text="Written in Kotlin"
-        android:textColor="@color/textColor"
-        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/nameView"
         tools:ignore="MissingConstraints" />
 
@@ -57,8 +57,8 @@
         android:layout_marginTop="8dp"
         android:text="38530 stars"
         android:textAlignment="textEnd"
-        android:textColor="@color/textColor"
-        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/centerGuid"
         app:layout_constraintTop_toBottomOf="@id/nameView" />
@@ -71,8 +71,8 @@
         android:layout_marginTop="8dp"
         android:text="38530 watchers"
         android:textAlignment="textEnd"
-        android:textColor="@color/textColor"
-        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/centerGuid"
         app:layout_constraintTop_toBottomOf="@id/starsView" />
@@ -85,8 +85,8 @@
         android:layout_marginTop="8dp"
         android:text="4675 forks"
         android:textAlignment="textEnd"
-        android:textColor="@color/textColor"
-        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/centerGuid"
         app:layout_constraintTop_toBottomOf="@id/watchersView" />
@@ -99,8 +99,8 @@
         android:layout_marginTop="8dp"
         android:text="131 open issues"
         android:textAlignment="textEnd"
-        android:textColor="@color/textColor"
-        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/centerGuid"
         app:layout_constraintTop_toBottomOf="@id/forksView" />
