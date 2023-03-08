@@ -22,20 +22,22 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
     private var _binding: FragmentSearchResultBinding? = null
     private val binding get() = _binding!!
 
+    lateinit var app: MainApplication
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchResultBinding.inflate(inflater, container, false)
-
+        app = requireActivity().application as MainApplication
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = SearchResultViewModel(requireActivity().application as MainApplication)
+        val viewModel = SearchResultViewModel(app)
         val layoutManager = LinearLayoutManager(requireContext())
         val dividerItemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
         val customAdapter = CustomAdapter(object : CustomAdapter.OnItemClickListener{
