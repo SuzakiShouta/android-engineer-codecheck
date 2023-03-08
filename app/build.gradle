@@ -59,7 +59,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
     // 予定: 1.6.4
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'io.ktor:ktor-client-android:1.6.4'
 
     // 予定: 2.2.2
