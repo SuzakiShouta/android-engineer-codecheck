@@ -15,7 +15,7 @@ class GithubApi {
         suspend fun searchRepositories(
             query: String,
             result: MutableLiveData<List<Repository>>,
-        ) {
+        ): List<Repository> {
             val client = HttpClient(Android)
 
             val response: HttpResponse = client.get("https://api.github.com/search/repositories") {
@@ -50,6 +50,7 @@ class GithubApi {
                 )
             }
             result.postValue(repositories)
+            return repositories.toList()
         }
     }
 }
