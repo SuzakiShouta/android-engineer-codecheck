@@ -23,7 +23,7 @@ class SearchResultViewModel(val app: MainApplication) : ViewModel() {
     // githubAPIを叩き、検索結果をLiveDataに投げる
     fun searchRepositories(query: String) {
         viewModelScope.launch {
-            GithubApi.searchRepositories(query, _repositories)
+            app.setRepositories(GithubApi.searchRepositories(query))
         }
     }
 
