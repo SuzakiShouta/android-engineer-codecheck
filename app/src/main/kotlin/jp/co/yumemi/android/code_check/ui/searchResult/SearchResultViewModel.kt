@@ -30,9 +30,9 @@ class SearchResultViewModel(val app: MainApplication) : ViewModel() {
     val repositories: LiveData<List<Repository>> = _repositories
 
     // githubAPIを叩き、検索結果をLiveDataに投げる
-    fun searchResults(inputText: String) {
+    fun searchRepositories(query: String) {
         viewModelScope.launch {
-            GithubApi.searchRepositories(inputText, _repositories)
+            GithubApi.searchRepositories(query, _repositories)
         }
     }
 }
