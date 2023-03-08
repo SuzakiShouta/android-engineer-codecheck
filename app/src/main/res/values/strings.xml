@@ -6,4 +6,6 @@
     <string name="watchers_count">%d watchers</string>
     <string name="forks_count">%d forks</string>
     <string name="open_issues_count">%d open issues</string>
+    <string name="error_no_query">検索欄に文字を入力してください</string>
+    <string name="error_too_long_query">文字が長すぎます</string>
 </resources>

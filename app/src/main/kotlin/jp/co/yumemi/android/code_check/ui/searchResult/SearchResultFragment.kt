@@ -49,7 +49,7 @@ class SearchResultFragment: Fragment(R.layout.fragment_search_result){
             // IMEの検索ボタンに反応
             if (action == EditorInfo.IME_ACTION_SEARCH) {
                 // searchResultsの結果はviewModelのrepositoriesというLiveDataが持つ
-                if (editText.text.isNotEmpty()) {
+                if (viewModel.validationCheck(editText.text)) {
                     val query = editText.text.toString()
                     viewModel.searchRepositories(query)
                 }
