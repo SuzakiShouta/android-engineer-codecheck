@@ -40,7 +40,7 @@ android {
 dependencies {
 
     // 予定: 1.9.0 依存: Kotlin 1.7.10
-    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
     // 予定: 1.6.1 依存: Kotlin 1.7.10, core 1.9.0, lifecycle 2.5.1
     implementation 'androidx.appcompat:appcompat:1.3.1'
     // 予定: 1.8.0 依存: core 1.6.0, lifecycle 2.0.0, recyclerview 1.0.0
