@@ -25,7 +25,7 @@ class SearchResultViewModel(val app: MainApplication) : ViewModel() {
         }
     }
 
-    fun validationCheck (query: String): Boolean {
+    fun validationCheck (query: CharSequence): Boolean {
         // null もしくは 空白のみ
         if (query.isBlank()) {
             return false
